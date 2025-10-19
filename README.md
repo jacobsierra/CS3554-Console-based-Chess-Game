@@ -42,3 +42,7 @@ The project follows proper package organization:
 ## Documentation
 
 Full API documentation is available in the `docs/` directory. Open `docs/index.html` in a web browser to view.
+
+## Notes
+
+We utilized Claude Code to help us write unit tests and the documentation so that we were certain about our input validation. If you'd like, we can provide the unit testing that was created for our game, as the documentation is also provided here in the repository.
