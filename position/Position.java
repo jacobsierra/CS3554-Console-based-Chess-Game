@@ -1,5 +1,7 @@
 package position;
 
+import java.io.Serializable;
+
 /**
  * Represents a position on the chess board using row and column indices.
  * Row 0 corresponds to rank 8 (black's back rank), and row 7 corresponds to rank 1 (white's back rank).
@@ -8,7 +10,8 @@ package position;
  * @author Jacob Sierra and Robert Zamora
  * @version 1.0
  */
-public class Position {
+public class Position implements Serializable {
+    private static final long serialVersionUID = 1L;
     public int row;
     public int col;
 

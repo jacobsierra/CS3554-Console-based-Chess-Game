@@ -3,6 +3,7 @@ package board;
 import pieces.*;
 import position.Position;
 import java.util.List;
+import java.io.Serializable;
 
 /**
  * Represents an 8x8 chess board with pieces. Manages board state, piece movement,
@@ -13,7 +14,8 @@ import java.util.List;
  * @author Jacob Sierra and Robert Zamora
  * @version 1.0
  */
-public class Board {
+public class Board implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Piece[][] grid = new Piece[8][8];
     private Position enPassantTarget = null;
 

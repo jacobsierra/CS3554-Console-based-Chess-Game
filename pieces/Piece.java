@@ -2,6 +2,7 @@ package pieces;
 
 import position.Position;
 import java.util.List;
+import java.io.Serializable;
 
 /**
  * Abstract base class representing a chess piece.
@@ -10,7 +11,8 @@ import java.util.List;
  * @author Jacob Sierra and Robert Zamora
  * @version 1.0
  */
-public abstract class Piece {
+public abstract class Piece implements Serializable {
+    private static final long serialVersionUID = 1L;
     protected String color;
     protected Position position;
     protected boolean hasMoved;
