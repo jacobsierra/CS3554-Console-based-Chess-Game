@@ -59,6 +59,16 @@ public abstract class Piece implements Serializable {
     }
 
     /**
+     * Sets the position without affecting hasMoved flag.
+     * Used by Board during move simulation for accurate check detection.
+     *
+     * @param newPosition the position to set
+     */
+    public void setPosition(Position newPosition) {
+        this.position = newPosition;
+    }
+
+    /**
      * Checks if this piece has been moved from its starting position.
      * Used for castling and pawn two-square move validation.
      *

@@ -245,14 +245,14 @@ public class Board implements Serializable {
 
         grid[to.row][to.col] = piece;
         grid[from.row][from.col] = null;
-        piece.position = to;  // Update position for accurate simulation
+        piece.setPosition(to);  // Update position for accurate simulation
 
         boolean inCheck = isInCheck(color);
 
         // Undo the move
         grid[from.row][from.col] = piece;
         grid[to.row][to.col] = captured;
-        piece.position = originalPosition;  // Restore original position
+        piece.setPosition(originalPosition);  // Restore original position
 
         return inCheck;
     }

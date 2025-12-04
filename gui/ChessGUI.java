@@ -451,6 +451,27 @@ public class ChessGUI extends JFrame {
             // Draw border
             g2d.setColor(Color.BLACK);
             g2d.drawRect(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+
+            // Draw coordinate labels only on outer edges
+            g2d.setFont(new Font("Arial", Font.BOLD, 11));
+            Color labelColor = (row + col) % 2 == 0 ? DARK_SQUARE : LIGHT_SQUARE;
+            g2d.setColor(labelColor);
+
+            // File labels (A-H) only on bottom rank (row 7)
+            if (row == 7) {
+                char file = (char) ('A' + col);
+                g2d.drawString(String.valueOf(file),
+                    col * SQUARE_SIZE + SQUARE_SIZE - 12,
+                    row * SQUARE_SIZE + SQUARE_SIZE - 3);
+            }
+
+            // Rank labels (1-8) only on leftmost file (col 0)
+            if (col == 0) {
+                int rank = 8 - row;
+                g2d.drawString(String.valueOf(rank),
+                    col * SQUARE_SIZE + 3,
+                    row * SQUARE_SIZE + 13);
+            }
         }
 
         /**
