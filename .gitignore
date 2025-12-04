@@ -85,3 +85,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+
+# Documentation files
+*.md
