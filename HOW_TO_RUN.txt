@@ -1,0 +1,37 @@
+# HOW TO RUN THE CHESS GUI
+
+## METHOD 1: Using IntelliJ IDEA (Recommended)
+1. Open project in IntelliJ
+2. Navigate to: gui/ChessGUI.java
+3. Right-click on the file
+4. Select "Run 'ChessGUI.main()'"
+
+## METHOD 2: Command Line Compilation
+
+### Compile all classes:
+javac -d out gui/*.java board/*.java pieces/*.java position/*.java utils/*.java
+
+### Run the GUI:
+java -cp out gui.ChessGUI
+
+## METHOD 3: Compile and Run in One Go
+# Windows:
+javac gui\ChessGUI.java gui\GameState.java board\Board.java pieces\*.java position\Position.java utils\Utilities.java && java gui.ChessGUI
+
+# Linux/Mac:
+javac gui/ChessGUI.java gui/GameState.java board/Board.java pieces/*.java position/Position.java utils/Utilities.java && java gui.ChessGUI
+
+## TO RUN CONSOLE VERSION (Phase 1):
+javac game/Main.java
+java game.Main
+
+## FEATURES IN GUI:
+- Click-to-move: Click piece, click destination
+- Drag-and-drop: Drag piece to destination
+- File menu: New Game, Save Game, Load Game, Exit
+- Keyboard shortcuts: Ctrl+N, Ctrl+S, Ctrl+L
+- All chess rules implemented (castling, en passant, pawn promotion, check, checkmate)
+
+## REQUIREMENTS:
+- Java 8 or higher
+- No external dependencies
