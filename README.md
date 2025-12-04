@@ -33,10 +33,10 @@ A fully-featured chess game implemented in Java with both a graphical user inter
 
 ```bash
 # Compile
-javac -d out gui/*.java board/*.java pieces/*.java position/*.java utils/*.java
+javac gui/ChessGUI.java
 
 # Run
-java -cp out gui.ChessGUI
+java gui.ChessGUI
 ```
 
 Or simply run `gui/ChessGUI.java` from your IDE.
