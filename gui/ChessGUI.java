@@ -300,9 +300,23 @@ public class ChessGUI extends JFrame {
                 return;
             }
 
-            // Check if capturing the king (simplified win condition for Phase 2)
-            Piece capturedPiece = board.getPiece(to);
-            boolean kingCaptured = capturedPiece instanceof King;
+            // Check castling restrictions
+            if (piece instanceof King && Math.abs(to.col - from.col) == 2) {
+                // Can't castle if in check
+                if (board.isInCheck(currentPlayer)) {
+                    JOptionPane.showMessageDialog(this, "Cannot castle while in check!");
+                    return;
+                }
+
+                // Check intermediate square isn't under attack
+                int intermediateCol = (from.col + to.col) / 2;
+                Position intermediatePos = new Position(from.row, intermediateCol);
+                String opponentColor = currentPlayer.equals("white") ? "black" : "white";
+                if (board.isPositionUnderAttack(intermediatePos, opponentColor)) {
+                    JOptionPane.showMessageDialog(this, "Cannot castle through check!");
+                    return;
+                }
+            }
 
             // Execute the move
             board.movePiece(from, to);
@@ -313,16 +327,6 @@ public class ChessGUI extends JFrame {
                 if (to.row == promotionRow) {
                     handlePawnPromotion(to);
                 }
-            }
-
-            // Check for king capture (win condition)
-            if (kingCaptured) {
-                String winner = currentPlayer.substring(0, 1).toUpperCase() + currentPlayer.substring(1);
-                JOptionPane.showMessageDialog(this,
-                    winner + " wins by capturing the King!",
-                    "Game Over",
-                    JOptionPane.INFORMATION_MESSAGE);
-                System.exit(0);
             }
 
             // Switch players

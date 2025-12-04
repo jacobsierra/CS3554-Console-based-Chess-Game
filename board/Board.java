@@ -107,10 +107,11 @@ public class Board implements Serializable {
             }
 
             // Check if this is a two-square pawn move (for en passant tracking)
-            enPassantTarget = null;
             if (piece instanceof Pawn && Math.abs(to.row - from.row) == 2) {
                 int direction = piece.getColor().equals("white") ? -1 : 1;
                 enPassantTarget = new Position(from.row + direction, from.col);
+            } else {
+                enPassantTarget = null;
             }
 
             grid[to.row][to.col] = piece;
@@ -240,15 +241,18 @@ public class Board implements Serializable {
         // Simulate the move
         Piece piece = grid[from.row][from.col];
         Piece captured = grid[to.row][to.col];
+        Position originalPosition = piece.getPosition();
 
         grid[to.row][to.col] = piece;
         grid[from.row][from.col] = null;
+        piece.position = to;  // Update position for accurate simulation
 
         boolean inCheck = isInCheck(color);
 
         // Undo the move
         grid[from.row][from.col] = piece;
         grid[to.row][to.col] = captured;
+        piece.position = originalPosition;  // Restore original position
 
         return inCheck;
     }
