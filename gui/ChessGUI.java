@@ -327,8 +327,30 @@ public class ChessGUI extends JFrame {
 
             // Switch players
             currentPlayer = currentPlayer.equals("white") ? "black" : "white";
-            setTitle("Chess Game - " + currentPlayer.substring(0, 1).toUpperCase() +
-                     currentPlayer.substring(1) + "'s turn");
+
+            // Check for checkmate or stalemate after switching players
+            if (!board.hasAnyLegalMoves(currentPlayer)) {
+                String message;
+                if (board.isInCheck(currentPlayer)) {
+                    // Checkmate - previous player wins
+                    String winner = currentPlayer.equals("white") ? "Black" : "White";
+                    message = "Checkmate! " + winner + " wins!";
+                } else {
+                    // Stalemate - draw
+                    message = "Stalemate! The game is a draw.";
+                }
+                JOptionPane.showMessageDialog(this, message, "Game Over",
+                    JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
+            }
+
+            // Update title with check notification
+            String title = "Chess Game - " + currentPlayer.substring(0, 1).toUpperCase() +
+                          currentPlayer.substring(1) + "'s turn";
+            if (board.isInCheck(currentPlayer)) {
+                title += " (Check!)";
+            }
+            setTitle(title);
 
             repaint();
         }
